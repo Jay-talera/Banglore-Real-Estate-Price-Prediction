@@ -5,7 +5,7 @@ app = Flask(__name__)
 @app.route('/get_location_names')
 def get_location_names():
     response = jsonify({
-        'locaitons' : util.get_location_names()
+        'locatons' : util.get_location_names()
     })
     response.headers.add('Access-Control-Allow-Origin','*')
     return response
