@@ -1,15 +1,18 @@
 from flask import Flask, request, jsonify
 import util
+import json
 app = Flask(__name__)
 
 @app.route('/get_location_names', methods=['GET'])
 def get_location_names():
-    response = jsonify({
-        'locations': util.get_location_names()
+    with open("C:\\JAY TALERA\\DATA SCIENCE\\ML PROJECTS\\Banglore-Real-Estate-Price-Prediction\\server\\artifacts\\columns.json", "r") as f:
+        response = json.load(f)['data_columns'][3:]
+   
+    loca = jsonify({
+        'locations' : response
     })
-    response.headers.add('Access-Control-Allow-Origin', '*')
-
-    return response
+    loca.headers.add('Access-Control-Allow-Origin', '*')
+    return loca
 
 @app.route('/predict_home_price', methods=['GET', 'POST'])
 def predict_home_price():
